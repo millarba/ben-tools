@@ -4,9 +4,9 @@ import json
 print('Hello world!')
 
 #add contact list here
-contacts = ["ben", "kelsey"]
+contacts = []
 #add seriesid
-seriesid = "2"
+seriesid = ""
 
 for contact in contacts:
 	payload = {
