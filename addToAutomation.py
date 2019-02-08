@@ -34,3 +34,4 @@ for contact in contacts:
 		total_successful += 1
 
 print(str(total_successful) + ' out of ' + str(total_attempted) + ' were successful')
+print(failed_contacts)
