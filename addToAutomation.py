@@ -10,6 +10,7 @@ seriesid = ""
 
 total_attempted = len(contacts)
 total_successful = 0
+failed_contacts = []
 
 for contact in contacts:
 	payload = {
@@ -21,11 +22,13 @@ for contact in contacts:
 	#api key here
 	params = {'api_key' : <API-KEY>, 'Content-Type' : 'application/x-www-form-urlencoded'}
 	#account url here
-	r = requests.post('https://<API-URL>.api-us1.com/api/3/contactAutomations', params=params, data=json.dumps(payload))
+	try:
+		r = requests.post('https://<API-URL>.api-us1.com/api/3/contactAutomations', params=params, data=json.dumps(payload))
+	except requests.exceptions.Timeout:
+		failed_contacts.append(contact)
 
 	print('Contact ID: ' + payload['contactAutomation']['contact'])
 	print(r.status_code)
-	# print(r.json())
 
 	if int(r.status_code) == 201:
 		total_successful += 1
